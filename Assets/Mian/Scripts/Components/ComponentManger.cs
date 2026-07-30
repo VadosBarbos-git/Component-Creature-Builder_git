@@ -1,6 +1,7 @@
 
 using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ComponentManger : MonoBehaviour
@@ -31,10 +32,10 @@ public class ComponentManger : MonoBehaviour
             _notAppliedComponents.Remove(component);
 
         }
-        ChangeAppliedComponents?.Invoke(_appliedComponents);
+        ChangeAppliedComponents?.Invoke(_appliedComponents.ToList());
     }
-    public List<ComponentDefinition> GetNotAppliedComponents() => _notAppliedComponents;
-    public List<ComponentDefinition> GetAppliedComponents() => _appliedComponents;
+    public List<ComponentDefinition> GetNotAppliedComponents() => _notAppliedComponents.ToList();
+    public List<ComponentDefinition> GetAppliedComponents() => _appliedComponents.ToList();
     public void Init()
     {
         _allComponents = new();
