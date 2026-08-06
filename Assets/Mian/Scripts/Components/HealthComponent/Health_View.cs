@@ -19,6 +19,7 @@ namespace Assets.Mian.Scripts.Components.HealthComponent
             {
                 CanvasHpBar.transform.LookAt(new Vector3(CanvasHpBar.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z));
                 CanvasHpBar.transform.Rotate(0, 180, 0);
+                 
             }
         }
     }

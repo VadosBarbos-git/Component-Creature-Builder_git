@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ComponentManger : MonoBehaviour
-{
-    [SerializeField] private Entity _Entity;
+public class ComponentManager : MonoBehaviour
+{ 
     [SerializeField] private List<ComponentDefinition> AllComponents;
     public event Action<List<ComponentDefinition>> ChangeAppliedComponents;
 
@@ -38,7 +37,7 @@ public class ComponentManger : MonoBehaviour
     public List<ComponentDefinition> GetAppliedComponents() => _appliedComponents.ToList();
     public void Init()
     {
-        _allComponents = new();
+        _allComponents = new(); 
         _appliedComponents = new();
         _notAppliedComponents = new();
         foreach (var item in AllComponents)

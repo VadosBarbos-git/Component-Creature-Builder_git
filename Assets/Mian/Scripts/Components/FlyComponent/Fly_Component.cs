@@ -1,6 +1,5 @@
-using System;
-using UnityEngine;
-using UnityEngine.InputSystem;
+
+using UnityEngine; 
 
 public class Fly_Component : MonoBehaviour, IComponentEntity
 {

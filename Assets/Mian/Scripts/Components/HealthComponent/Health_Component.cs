@@ -9,7 +9,7 @@ namespace Assets.Mian.Scripts.Components.HealthComponent
         public int curentHealth { get; private set; }
         public int maxHealth = 100;
         public bool imAlive => curentHealth > 0;
-        public Action<int, int> OnHealthChanged;
+        public event Action<int, int> OnHealthChanged;
 
         private Health_Presenter _Presenter;
         private Health_View _View;
@@ -31,7 +31,7 @@ namespace Assets.Mian.Scripts.Components.HealthComponent
         public void Tick()
         {
 
-        } 
+        }
         public void Disable()
         {
             //остановить всю отрисовку перед удалением 

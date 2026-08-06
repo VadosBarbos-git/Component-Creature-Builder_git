@@ -3,15 +3,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Entity _Entity;
-    [SerializeField] private ComponentManger _ComponentManager;
+    [SerializeField] private ComponentManager _ComponentManager;
+    [SerializeField] private ComponentPresenter _ComponentPresenter;
     void Start()
     {
-        Subscriptions();
+        _ComponentManager.Init();
+        _ComponentPresenter.Init(_ComponentManager);
+        _Entity.Init(_ComponentManager); 
     }
 
-    private void Subscriptions()
-    {
-        _ComponentManager.ChangeAppliedComponents += _Entity.UpdateAppliedComponents;
-    }
-
+    
 }

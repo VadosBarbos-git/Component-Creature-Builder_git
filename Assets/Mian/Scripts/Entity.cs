@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,15 +12,18 @@ public class Entity : MonoBehaviour
     private Dictionary<ComponentDefinition, IComponentEntity> _Components = new();
     private Dictionary<ComponentDefinition, GameObject> _ObjectComponents = new();
 
-
-    public Rigidbody GetRB() => rigidbody3D;
-    public void UpdateAppliedComponents(List<ComponentDefinition> appliedComponents)
+    public void Init(ComponentManager manager)
     {
-        List<ComponentDefinition> valuesForRemove = _Components.Keys.Where(a => !appliedComponents.Contains(a)).ToList(); 
+        manager.ChangeAppliedComponents += UpdateAppliedComponents;
+    }
+    public Rigidbody GetRB() => rigidbody3D;
+    private void UpdateAppliedComponents(List<ComponentDefinition> appliedComponents)
+    {
+        List<ComponentDefinition> valuesForRemove = _Components.Keys.Where(a => !appliedComponents.Contains(a)).ToList();
         foreach (var value in valuesForRemove)
         {
             RemoveComponent(value);
-        } 
+        }
         foreach (var item in appliedComponents)
         {
             if (_Components.ContainsKey(item)) continue;
@@ -53,7 +56,7 @@ public class Entity : MonoBehaviour
     }
 
     void FixedUpdate()
-    { 
+    {
         foreach (var ite in _Components.Values)
         {
             ite.Tick();

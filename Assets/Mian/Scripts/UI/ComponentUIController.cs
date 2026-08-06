@@ -5,14 +5,22 @@ using UnityEngine.UI;
 
 public class ComponentUIController : MonoBehaviour
 {
-    [SerializeField] private GameObject _cellComponentPrefab;
-    [SerializeField] private ComponentPresenter _componentPresenter;
+    [SerializeField] private GameObject _cellComponentPrefab; 
     [SerializeField] private PanelDrop _appliedPanel;
     [SerializeField] private PanelDrop _notAppliedPanel;
     [SerializeField] private DragCell _dragCell;
+    private ComponentManager _managerController;
+    public void Init(ComponentManager managerController)
+    {
+        _managerController = managerController;
+        UpdateApplyedPanel(_managerController.GetAppliedComponents());
+        UpdateNotApplyedPanel(_managerController.GetNotAppliedComponents());
+    }
     public void DropCellOn(PanelSide side, ComponentDefinition component)
     {
-        _componentPresenter.DropCellOn(side, component);
+        _managerController.PutComponentOnSide(side, component);
+        UpdateApplyedPanel(_managerController.GetAppliedComponents());
+        UpdateNotApplyedPanel(_managerController.GetNotAppliedComponents());
     }
     public void UpdateApplyedPanel(List<ComponentDefinition> components)
     {
