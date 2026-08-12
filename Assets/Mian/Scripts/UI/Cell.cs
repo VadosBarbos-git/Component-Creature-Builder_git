@@ -5,8 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Cell : MonoBehaviour, IDragHandler, IBeginDragHandler
-{
-    public static Cell CurentCell;
+{ 
     private ComponentDefinition _curentComponent;
 
     private Image _image;
@@ -16,8 +15,7 @@ public class Cell : MonoBehaviour, IDragHandler, IBeginDragHandler
 
     private DragCell DragCell;
     public void OnBeginDrag(PointerEventData eventData)
-    {
-        CurentCell = this;
+    { 
         if (_image == null) _image = GetComponent<Image>();
         if (_textNameCell == null) _textNameCell = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         if (_rectTransform == null) _rectTransform = GetComponent<RectTransform>();
