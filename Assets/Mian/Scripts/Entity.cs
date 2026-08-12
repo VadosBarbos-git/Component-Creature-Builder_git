@@ -36,7 +36,7 @@ public class Entity : MonoBehaviour
     {
         if (_components.ContainsKey(value)) return;
 
-        GameObject obj = _componentFactory.MakeComponent(value.prefab, transform);
+        GameObject obj = _componentFactory.MakeComponent(value, transform);
         IComponentEntity component = obj.GetComponent<IComponentEntity>();
 
 
@@ -49,7 +49,7 @@ public class Entity : MonoBehaviour
     {
         if (!_components.ContainsKey(key)) return;
         _components[key].componentEntity.Disable();
-        _componentFactory.DestroyComponet(_components[key].objectComponent);
+        _componentFactory.DestroyComponet(key.nameComponent);
         _components.Remove(key);
     }
 
