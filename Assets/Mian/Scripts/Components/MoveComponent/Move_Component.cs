@@ -8,8 +8,7 @@ public class Move_Component : MonoBehaviour, IComponentEntity
     public void Disable()
     {
         action.Disable();
-    }
-
+    } 
     public void Initialize(Entity entity)
     {
         rb = entity.GetRB();

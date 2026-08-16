@@ -11,7 +11,6 @@ namespace Assets.Mian.Scripts.Components.HealthComponent
         public bool imAlive => curentHealth > 0;
         public event Action<int, int> OnHealthChanged;
 
-        private Health_Presenter _Presenter;
         private Health_View _View;
 
         public void TakeDamage(int damage)
@@ -23,11 +22,13 @@ namespace Assets.Mian.Scripts.Components.HealthComponent
         {
             curentHealth = maxHealth;
             _View = GetComponent<Health_View>();
-            _Presenter = new Health_Presenter(_View);
-            OnHealthChanged += _Presenter.UpdateView;
+            OnHealthChanged += UpdateView;
             OnHealthChanged?.Invoke(curentHealth, maxHealth);
         }
-
+        private void UpdateView(int curenHp, int maxHp)
+        {
+            if (_View != null) _View.UpdateView(curenHp, maxHp);
+        }
         public void Tick()
         {
 
