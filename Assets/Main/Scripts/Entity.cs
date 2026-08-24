@@ -36,9 +36,11 @@ public class Entity : MonoBehaviour
     {
         if (_components.ContainsKey(value)) return;
 
-        GameObject obj = _componentFactory.MakeComponent(value, transform);
-        IComponentEntity component = obj.GetComponent<IComponentEntity>();
+        GameObject obj;
+        if (!_componentFactory.TryGetCompnentFromPool(out obj, value))
+            obj = _componentFactory.MakeComponent(value, transform);
 
+        IComponentEntity component = obj.GetComponent<IComponentEntity>(); 
 
         component.Initialize(this);
         ComponentDetails cDetails = new(component, obj);
@@ -49,7 +51,7 @@ public class Entity : MonoBehaviour
     {
         if (!_components.ContainsKey(key)) return;
         _components[key].componentEntity.Disable();
-        _componentFactory.DestroyComponet(key.nameComponent);
+        _componentFactory.HideComponet(key.nameComponent);
         _components.Remove(key);
     }
 
