@@ -37,12 +37,16 @@ public class Entity : MonoBehaviour
         if (_components.ContainsKey(value)) return;
 
         GameObject obj;
-        if (!_componentFactory.TryGetCompnentFromPool(out obj, value))
+        bool haveComponentInPool = _componentFactory.TryGetCompnentFromPool(out obj, value);
+
+        if (!haveComponentInPool)
             obj = _componentFactory.MakeComponent(value, transform);
 
-        IComponentEntity component = obj.GetComponent<IComponentEntity>(); 
+        IComponentEntity component = obj.GetComponent<IComponentEntity>();
 
-        component.Initialize(this);
+        if (!haveComponentInPool)
+            component.Initialize(this);
+
         ComponentDetails cDetails = new(component, obj);
         _components.Add(value, cDetails);
 
