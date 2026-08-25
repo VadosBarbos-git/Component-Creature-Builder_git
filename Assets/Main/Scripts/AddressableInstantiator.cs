@@ -11,6 +11,7 @@ public class AddressableInstantiator : MonoBehaviour
     [SerializeField] private Transform _parentForEnviroment;
     private InputAction _loadAssetButton;
     private bool _loaded = false;
+    private AsyncOperationHandle<GameObject> _handel;
 
     private void Start()
     {
@@ -27,7 +28,8 @@ public class AddressableInstantiator : MonoBehaviour
     }
     private void LoadAsset()
     {
-        _enviroment.LoadAssetAsync().Completed += OnAddressableLoaded;
+        _handel = _enviroment.LoadAssetAsync();
+        _handel.Completed += OnAddressableLoaded;
     }
     private void OnAddressableLoaded(AsyncOperationHandle<GameObject> handle)
     {
@@ -37,5 +39,9 @@ public class AddressableInstantiator : MonoBehaviour
             Instantiate(handle.Result, _parentForEnviroment);
         }
         else Debug.LogError("Loading Asset Failed!");
+    }
+    private void OnDisable()
+    {
+        Addressables.Release(_handel);
     }
 }
