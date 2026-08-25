@@ -11,7 +11,11 @@ public class ComponentFactory : MonoBehaviour
         string nameC = componentDefinition.nameComponent;
 
         if (!_pool.ContainsKey(nameC))
-            _pool.Add(nameC, Instantiate(componentDefinition.prefab, transform)); 
+        {
+            var result = Instantiate(componentDefinition.prefab, transform);
+            _pool.Add(nameC, result);
+            return result;
+        }
         return null;
     }
     public bool TryGetCompnentFromPool(out GameObject obj, ComponentDefinition componentDefinition)
