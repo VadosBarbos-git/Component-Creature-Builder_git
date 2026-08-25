@@ -1,5 +1,5 @@
 
-using Assets.Mian.Scripts.Components;
+using Assets.Main.Scripts.Components;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -55,7 +55,7 @@ public class Entity : MonoBehaviour
     {
         if (!_components.ContainsKey(key)) return;
         _components[key].componentEntity.Disable();
-        _componentFactory.HideComponet(key.nameComponent);
+        _componentFactory.HideComponent(key.nameComponent);
         _components.Remove(key);
     }
 

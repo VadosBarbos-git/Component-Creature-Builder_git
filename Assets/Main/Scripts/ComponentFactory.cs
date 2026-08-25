@@ -31,7 +31,7 @@ public class ComponentFactory : MonoBehaviour
         }
         return result;
     }
-    public void HideComponet(string nameComponent)
+    public void HideComponent(string nameComponent)
     {
         if (!_pool.ContainsKey(nameComponent)) return;
         _pool[nameComponent].SetActive(false);

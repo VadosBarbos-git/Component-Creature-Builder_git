@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace Assets.Mian.Scripts.Components
+namespace Assets.Main.Scripts.Components
 {
     public class ComponentDetails
     {

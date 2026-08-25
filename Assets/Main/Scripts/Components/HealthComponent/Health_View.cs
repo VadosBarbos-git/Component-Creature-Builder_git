@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Mian.Scripts.Components.HealthComponent
+namespace Assets.Main.Scripts.Components.HealthComponent
 {
     public class Health_View : MonoBehaviour
     {
