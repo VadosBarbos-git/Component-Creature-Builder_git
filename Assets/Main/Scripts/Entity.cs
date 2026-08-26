@@ -37,7 +37,7 @@ public class Entity : MonoBehaviour
         if (_components.ContainsKey(value)) return;
 
         GameObject obj;
-        bool haveComponentInPool = _componentFactory.TryGetCompnentFromPool(out obj, value);
+        bool haveComponentInPool = _componentFactory.TryGetComponentFromPool(out obj, value);
 
         if (!haveComponentInPool)
             obj = _componentFactory.MakeComponent(value, transform);
@@ -46,6 +46,8 @@ public class Entity : MonoBehaviour
 
         if (!haveComponentInPool)
             component.Initialize(this);
+
+        component.Activate();
 
         ComponentDetails cDetails = new(component, obj);
         _components.Add(value, cDetails);

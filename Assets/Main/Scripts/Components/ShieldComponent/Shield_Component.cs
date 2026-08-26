@@ -3,7 +3,12 @@ using UnityEngine;
 public class Shield_Component : MonoBehaviour, IComponentEntity
 {
     [Range(10, 100)]
-    [SerializeField] private int defanceShield = 20; 
+    [SerializeField] private int defanceShield = 20;
+
+    public void Activate()
+    { 
+    }
+
     public void Disable()
     {
         

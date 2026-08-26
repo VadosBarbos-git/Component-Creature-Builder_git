@@ -5,6 +5,12 @@ public class Move_Component : MonoBehaviour, IComponentEntity
     [SerializeField] private float moveSpeed = 10;
     private Rigidbody rb;
     private InputSystem_Actions action;
+
+    public void Activate()
+    { 
+        action.Enable();
+    }
+
     public void Disable()
     {
         action.Disable();
@@ -12,8 +18,7 @@ public class Move_Component : MonoBehaviour, IComponentEntity
     public void Initialize(Entity entity)
     {
         rb = entity.GetRB();
-        action = new();
-        action.Enable();
+        action = new(); 
     } 
     public void Tick()
     {

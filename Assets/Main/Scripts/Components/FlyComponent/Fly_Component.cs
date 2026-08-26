@@ -6,6 +6,12 @@ public class Fly_Component : MonoBehaviour, IComponentEntity
     private Rigidbody _rb;
     private InputSystem_Actions _inputActions;
     [SerializeField] private float forceFly = 20;
+
+    public void Activate()
+    {
+        _inputActions.Enable();        
+    }
+
     public void Disable()
     {
         _inputActions.Disable();

@@ -19,11 +19,8 @@ namespace Assets.Main.Scripts.Components.HealthComponent
             OnHealthChanged?.Invoke(curentHealth, maxHealth);
         }
         public void Initialize(Entity entity)
-        {
-            curentHealth = maxHealth;
-            _View = GetComponent<Health_View>();
-            OnHealthChanged += UpdateView;
-            OnHealthChanged?.Invoke(curentHealth, maxHealth);
+        { 
+            _View = GetComponent<Health_View>(); 
         }
         private void UpdateView(int curenHp, int maxHp)
         {
@@ -35,7 +32,14 @@ namespace Assets.Main.Scripts.Components.HealthComponent
         }
         public void Disable()
         {
-            //остановить всю отрисовку перед удалением 
+            OnHealthChanged -= UpdateView;
+        }
+
+        public void Activate()
+        {
+            curentHealth = maxHealth;
+            OnHealthChanged += UpdateView;
+            OnHealthChanged?.Invoke(curentHealth, maxHealth);
         }
     }
 }

@@ -18,7 +18,7 @@ public class ComponentFactory : MonoBehaviour
         }
         return null;
     }
-    public bool TryGetCompnentFromPool(out GameObject obj, ComponentDefinition componentDefinition)
+    public bool TryGetComponentFromPool(out GameObject obj, ComponentDefinition componentDefinition)
     {
         string nameC = componentDefinition.nameComponent;
         bool result = _pool.ContainsKey(nameC);
